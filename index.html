@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForceSMP | Cyber Minecraft Experience</title>
+    <title>ForceSMP | Minecraft Experience</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
@@ -51,7 +51,13 @@
         .header-left {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            text-shadow: 0 0 10px var(--accent-glow);
         }
 
         .logo {
@@ -300,28 +306,6 @@
             margin-bottom: 15px;
         }
 
-        /* Leaderboard Table */
-        .rank-table {
-            width: 100%;
-            max-width: 800px;
-            border-collapse: collapse;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .rank-table th, .rank-table td {
-            padding: 12px 20px;
-            text-align: left;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .rank-table th {
-            background: rgba(85, 255, 255, 0.1);
-            color: var(--accent-color);
-        }
-
         /* Social Buttons */
         .social-links {
             display: flex;
@@ -354,7 +338,8 @@
 
     <header>
         <div class="header-left">
-            <div class="logo">FORCE SMP</div>
+            <i class="fa-solid fa-bolt logo-icon"></i>
+            <div class="logo">FORCESMP</div>
             <div class="lang-switch">
                 <button class="lang-btn active" onclick="setLang('de', this)">DE</button>
                 <button class="lang-btn" onclick="setLang('en', this)">EN</button>
@@ -379,11 +364,11 @@
                 <span class="pulse-dot"></span>
                 <span id="txt-status">SERVER IS COMMING SOON!</span>
             </div>
-            <h1 class="hero-title">FORCE SMP</h1>
-            <p class="hero-subtitle" id="txt-subtitle">Das ultimative Cyber-Survival Erlebnis mit einzigartigen Systemen, Custom Skripten und maximaler Performance.</p>
+            <h1 class="hero-title">FORCESMP</h1>
+            <p class="hero-subtitle" id="txt-subtitle">Das ultimative Survival-Erlebnis mit einzigartigen Systemen, Custom Skripten und maximaler Performance.</p>
             
             <div class="ip-card" onclick="copyIP()">
-                <i class="fa-solid fa-server" style="color: var(--accent-color);"></i>
+                <i class="fa-solid fa-bolt" style="color: var(--accent-color);"></i>
                 <span class="ip-text" id="ip-val">COMMING SOON</span>
                 <div class="copy-btn" id="copy-btn">
                     <i class="fa-regular fa-copy"></i> <span id="txt-copy">KOPIEREN</span>
@@ -417,9 +402,9 @@
         <div id="capes" class="page">
             <h2 style="font-size: 2.2rem; margin-bottom: 15px; color: var(--accent-color);" id="txt-cape-title">OFFIZIELLES FORCESMP CAPE</h2>
             <div class="cape-showcase">
-                <!-- Foto des Capes eingebunden -->
+                <!-- Ersetze 'cape.jpg' durch den echten Dateinamen deines Bildes im Hauptordner -->
                 <img src="cape.jpg" alt="ForceSMP Cape Preview" class="cape-img">
-                <p style="color: var(--text-sub); text-align: center; font-size: 0.95rem;" id="txt-cape-desc">Exklusives Cyber-Cape für Supporter & Teammitglieder von ForceSMP!</p>
+                <p style="color: var(--text-sub); text-align: center; font-size: 0.95rem;" id="txt-cape-desc">Exklusives Cape für Supporter & Teammitglieder von ForceSMP!</p>
             </div>
         </div>
 
@@ -454,7 +439,7 @@
         <div id="about" class="page">
             <h2 style="font-size: 2.2rem; margin-bottom: 20px; color: var(--accent-color);" id="txt-about-title">ÜBER FORCESMP</h2>
             <p style="max-width: 700px; text-align: center; color: var(--text-sub); line-height: 1.8; font-size: 1.1rem; margin-bottom: 30px;" id="txt-about-p">
-                ForceSMP ist ein leidenschaftliches Minecraft-Projekt. Wir kombinieren das klassische Survival-Feeling mit innovativen Cyber-Elementen, um ein einzigartiges Gameplay zu erschaffen. Unser Entwicklerteam arbeitet kontinuierlich an neuen Inhalten und Events.
+                ForceSMP ist ein leidenschaftliches Minecraft-Projekt. Wir kombinieren das klassische Survival-Feeling mit einzigartigen Systemen, um ein einzigartiges Gameplay zu erschaffen. Unser Entwicklerteam arbeitet kontinuierlich an neuen Inhalten und Events.
             </p>
         </div>
 
@@ -490,7 +475,7 @@
             }
         }
 
-        // Kopieren des Texts "COMMING SOON"
+        // Kopieren des Texts
         function copyIP() {
             const val = document.getElementById('ip-val').innerText;
             navigator.clipboard.writeText(val).then(() => {
@@ -504,45 +489,45 @@
             });
         }
 
-        // Vollständige Sprachumschaltung (DE / EN) inklusive Navigation!
+        // Sprachumschaltung (DE / EN)
         const i18n = {
             de: {
                 navHome: "Home", navFeatures: "Features", navCapes: "Capes", navRules: "Regeln", navAbout: "Über Uns", navCommunity: "Community",
                 status: "SERVER IS COMMING SOON!",
-                subtitle: "Das ultimative Cyber-Survival Erlebnis mit einzigartigen Systemen, Custom Skripten und maximaler Performance.",
+                subtitle: "Das ultimative Survival-Erlebnis mit einzigartigen Systemen, Custom Skripten und maximaler Performance.",
                 copy: "KOPIEREN",
                 featTitle: "SERVER FEATURES",
                 feat1H: "Custom Skripte", feat1P: "Eigene Quests, Wirtschaftssysteme und Interaktionen, die speziell für ForceSMP entwickelt wurden.",
                 feat2H: "High Performance", feat2P: "Optimierter Dedicated Server für ein absolut lag-freies Spielerlebnis auch bei vielen Spielern.",
                 feat3H: "Anti-Grief & Safe", feat3P: "Schütze deine Bauwerke ganz einfach mit modernsten Claim-Systemen und automatischer Sicherung.",
-                capeTitle: "OFFIZIELLES FORCESMP CAPE", capeDesc: "Exklusives Cyber-Cape für Supporter & Teammitglieder von ForceSMP!",
+                capeTitle: "OFFIZIELLES FORCESMP CAPE", capeDesc: "Exklusives Cape für Supporter & Teammitglieder von ForceSMP!",
                 rulesTitle: "SERVER REGELN",
                 r1H: "1. Kein Cheaten / Hacking", r1P: "Modifikationen, die unfaire Vorteile verschaffen (X-Ray, Autoclicker, Killaura), führen zum sofortigen Ban.",
                 r2H: "2. Respektvoller Chat", r2P: "Beleidigungen, Spam und Eigenwerbung sind im Chat strengstens untersagt.",
                 r3H: "3. Kein Griefing", r3P: "Fremde Grundstücke und Bauwerke dürfen nicht beschädigt oder ausgeraubt werden.",
                 r4H: "4. Bug-Using", r4P: "Das Ausnutzen von Fehlern oder Duplizieren von Items muss sofort dem Team gemeldet werden.",
                 aboutTitle: "ÜBER FORCESMP",
-                aboutP: "ForceSMP ist ein leidenschaftliches Minecraft-Projekt. Wir kombinieren das klassische Survival-Feeling mit innovativen Cyber-Elementen, um ein einzigartiges Gameplay zu erschaffen. Unser Entwicklerteam arbeitet kontinuierlich an neuen Inhalten und Events.",
+                aboutP: "ForceSMP ist ein leidenschaftliches Minecraft-Projekt. Wir kombinieren das klassische Survival-Feeling mit innovativen Elementen, um ein einzigartiges Gameplay zu erschaffen. Unser Entwicklerteam arbeitet kontinuierlich an neuen Inhalten und Events.",
                 comTitle: "WERDE TEIL DER COMMUNITY",
                 comP: "Tritt unserem Discord-Server bei, um keine Updates, Teaser und Giveaways zu verpassen!"
             },
             en: {
                 navHome: "Home", navFeatures: "Features", navCapes: "Capes", navRules: "Rules", navAbout: "About Us", navCommunity: "Community",
                 status: "SERVER IS COMMING SOON!",
-                subtitle: "The ultimate cyber-survival experience with unique systems, custom scripts, and maximum performance.",
+                subtitle: "The ultimate survival experience with unique systems, custom scripts, and maximum performance.",
                 copy: "COPY",
                 featTitle: "SERVER FEATURES",
                 feat1H: "Custom Scripts", feat1P: "Unique quests, economy systems, and custom features made specifically for ForceSMP.",
                 feat2H: "High Performance", feat2P: "Optimized dedicated server hardware for a smooth, lag-free gameplay experience.",
                 feat3H: "Anti-Grief & Safe", feat3P: "Easily protect your builds using our advanced claim and security systems.",
-                capeTitle: "OFFICIAL FORCESMP CAPE", capeDesc: "Exclusive cyber cape for supporters & team members of ForceSMP!",
+                capeTitle: "OFFICIAL FORCESMP CAPE", capeDesc: "Exclusive cape for supporters & team members of ForceSMP!",
                 rulesTitle: "SERVER RULES",
                 r1H: "1. No Cheating / Hacking", r1P: "Any modifications providing unfair advantages (X-Ray, Autoclickers, Killaura) will result in a permanent ban.",
                 r2H: "2. Respectful Chat", r2P: "Insults, spam, and self-promotion are strictly prohibited in public chat.",
                 r3H: "3. No Griefing", r3P: "Griefing or stealing from other players' claims is strictly forbidden.",
                 r4H: "4. Bug Exploiting", r4P: "Exploiting bugs or duplicating items must be reported to the staff team immediately.",
                 aboutTitle: "ABOUT FORCESMP",
-                aboutP: "ForceSMP is a passionate Minecraft project combining classic survival gameplay with innovative cyber features. Our team is constantly working on new content and events.",
+                aboutP: "ForceSMP is a passionate Minecraft project combining classic survival gameplay with innovative features. Our team is constantly working on new content and events.",
                 comTitle: "JOIN THE COMMUNITY",
                 comP: "Join our Discord server to get the latest updates, teasers, and giveaways!"
             }
@@ -554,7 +539,6 @@
 
             const data = i18n[lang];
 
-            // Navigation übersetzen
             document.getElementById('nav-home').innerText = data.navHome;
             document.getElementById('nav-features').innerText = data.navFeatures;
             document.getElementById('nav-capes').innerText = data.navCapes;
@@ -562,7 +546,6 @@
             document.getElementById('nav-about').innerText = data.navAbout;
             document.getElementById('nav-community').innerText = data.navCommunity;
 
-            // Seiteninhalte übersetzen
             document.getElementById('txt-status').innerText = data.status;
             document.getElementById('txt-subtitle').innerText = data.subtitle;
             document.getElementById('txt-copy').innerText = data.copy;
