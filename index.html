@@ -3,159 +3,483 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForceSMP LX</title>
+    <title>ForceSMP LX | Cyber Minecraft Experience</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #080c10;
-            --accent-color: #00ffff;
-            --accent-glow: rgba(0, 255, 255, 0.4);
-            --text-color: #ffffff;
-            --secondary-text: #8892b0;
+            --bg-color: #06090e;
+            --card-bg: rgba(13, 22, 35, 0.75);
+            --accent-color: #55ffff;
+            --accent-glow: rgba(85, 255, 255, 0.35);
+            --text-main: #ffffff;
+            --text-sub: #94a3b8;
+            --border-color: rgba(85, 255, 255, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            margin: 0;
-            padding: 0;
             background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-main);
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden; /* Verhindert Scrollen */
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            background-image: 
+                radial-gradient(circle at 50% 30%, rgba(85, 255, 255, 0.08) 0%, transparent 60%),
+                linear-gradient(to bottom, rgba(6, 9, 14, 0.8), var(--bg-color));
+        }
+
+        /* Top Header Navigation */
+        header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            height: 100vh;
-            overflow: hidden;
-            background-image: radial-gradient(circle at center, #101c2c 0%, var(--bg-color) 100%);
+            padding: 20px 40px;
+            background: rgba(6, 9, 14, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 100;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-color);
+            text-shadow: 0 0 12px var(--accent-glow);
+            letter-spacing: 2px;
         }
 
         /* Sprachumschalter Oben Links */
         .lang-switch {
-            position: absolute;
-            top: 20px;
-            left: 20px;
             display: flex;
-            gap: 10px;
+            gap: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
         }
 
         .lang-btn {
-            background: rgba(0, 255, 255, 0.1);
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            padding: 5px 12px;
+            background: transparent;
+            border: none;
+            color: var(--text-sub);
+            padding: 4px 10px;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 700;
+            font-size: 0.85rem;
             border-radius: 4px;
             transition: 0.3s;
         }
 
-        .lang-btn:hover, .lang-btn.active {
+        .lang-btn.active, .lang-btn:hover {
             background: var(--accent-color);
             color: var(--bg-color);
-            box-shadow: 0 0 10px var(--accent-glow);
+            box-shadow: 0 0 8px var(--accent-glow);
         }
 
-        /* Hauptcontainer */
-        .container {
-            text-align: center;
-            padding: 20px;
+        /* Navigation Links */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
         }
 
-        h1 {
-            font-size: 3rem;
-            margin: 0 0 10px 0;
-            color: var(--accent-color);
-            text-shadow: 0 0 20px var(--accent-glow);
-            letter-spacing: 2px;
-        }
-
-        .status-badge {
-            font-size: 1.2rem;
-            color: var(--secondary-text);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 30px;
+        nav a {
+            color: var(--text-sub);
+            text-decoration: none;
             font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+            padding: 8px 12px;
+            border-radius: 6px;
         }
 
-        /* IP-Kästchen (Kopiergeschützt / Readonly) */
-        .ip-box {
-            background: rgba(0, 0, 0, 0.5);
-            border: 2px solid var(--accent-color);
-            padding: 12px 24px;
-            font-size: 1.2rem;
+        nav a:hover, nav a.active {
             color: var(--accent-color);
-            border-radius: 8px;
-            display: inline-block;
+            text-shadow: 0 0 8px var(--accent-glow);
+            background: rgba(85, 255, 255, 0.05);
+        }
+
+        /* Sub-Pages Container */
+        main {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            height: calc(100vh - 80px);
+        }
+
+        .page {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
+
+        .page.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        /* Home Page Content */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(85, 255, 255, 0.1);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--accent-color);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-color);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        h1.hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px var(--accent-glow);
+            color: #ffffff;
+        }
+
+        p.hero-subtitle {
+            color: var(--text-sub);
+            font-size: 1.2rem;
+            max-width: 600px;
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        /* IP / Status Card */
+        .ip-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 16px 28px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
             cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-            user-select: all; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            transition: 0.3s;
+            backdrop-filter: blur(8px);
+        }
+
+        .ip-card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 25px var(--accent-glow);
+            transform: translateY(-2px);
+        }
+
+        .ip-text {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            letter-spacing: 2px;
+            user-select: none;
+        }
+
+        .copy-btn {
+            background: rgba(85, 255, 255, 0.15);
+            color: var(--accent-color);
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            pointer-events: none;
+        }
+
+        /* Grid Pages (Features / About) */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: left;
+            transition: 0.3s;
+            backdrop-filter: blur(8px);
+        }
+
+        .card:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .card i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: var(--text-sub);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Social Buttons */
+        .social-links {
+            display: flex;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .social-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             transition: 0.3s;
         }
 
-        .ip-box:hover {
-            box-shadow: 0 0 25px var(--accent-glow);
-        }
-
-        .ip-input {
-            background: transparent;
-            border: none;
+        .social-btn:hover {
+            border-color: var(--accent-color);
             color: var(--accent-color);
-            font-size: 1.2rem;
-            text-align: center;
-            outline: none;
-            width: 220px;
-            cursor: pointer;
-            font-family: monospace;
+            box-shadow: 0 0 15px var(--accent-glow);
         }
     </style>
 </head>
 <body>
 
-    <!-- Sprachumschalter Oben Links -->
-    <div class="lang-switch">
-        <button class="lang-btn active" onclick="setLanguage('de')">DE</button>
-        <button class="lang-btn" onclick="setLanguage('en')">EN</button>
-    </div>
-
-    <div class="container">
-        <h1 id="title">FORCE SMP LX</h1>
-        <div class="status-badge" id="status-text">SERVER IS IN BUILDING</div>
-
-        <!-- IP-Kästchen (Readonly / Geschützt) -->
-        <div class="ip-box" onclick="copyIP()">
-            <input type="text" id="server-ip" class="ip-input" value="IN BUILDING" readonly>
+    <header>
+        <div class="header-left">
+            <div class="logo">FORCE SMP <span style="color: #fff;">LX</span></div>
+            <div class="lang-switch">
+                <button class="lang-btn active" onclick="setLang('de')">DE</button>
+                <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </div>
         </div>
-    </div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="nav-link active" onclick="showPage('home')">Home</a></li>
+                <li><a href="#features" class="nav-link" onclick="showPage('features')">Features</a></li>
+                <li><a href="#about" class="nav-link" onclick="showPage('about')">Über Uns</a></li>
+                <li><a href="#community" class="nav-link" onclick="showPage('community')">Community</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- PAGE 1: HOME -->
+        <div id="home" class="page active">
+            <div class="status-badge">
+                <span class="pulse-dot"></span>
+                <span id="txt-status">SERVER IS COMMING SOON!</span>
+            </div>
+            <h1 class="hero-title">FORCE SMP LX</h1>
+            <p class="hero-subtitle" id="txt-subtitle">Das ultimative Cyber-Survival Erlebnis mit einzigartigen Systemen, Custom Skripten und maximaler Performance.</p>
+            
+            <div class="ip-card" onclick="copyIP()">
+                <i class="fa-solid fa-server" style="color: var(--accent-color);"></i>
+                <span class="ip-text" id="ip-val">COMMING SOON</span>
+                <div class="copy-btn" id="copy-btn">
+                    <i class="fa-regular fa-copy"></i> <span id="txt-copy">KOPIEREN</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 2: FEATURES -->
+        <div id="features" class="page">
+            <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: var(--accent-color);" id="txt-feat-title">SERVER FEATURES</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <i class="fa-solid fa-code"></i>
+                    <h3 id="feat1-h">Custom Skripte</h3>
+                    <p id="feat1-p">Eigene Quests, Wirtschaftssysteme und Interaktionen, die speziell für ForceSMP LX entwickelt wurden.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-bolt"></i>
+                    <h3 id="feat2-h">High Performance</h3>
+                    <p id="feat2-p">Optimierter Dedicated Server für ein absolut lag-freies Spielerlebnis auch bei vielen Spielern.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <h3 id="feat3-h">Anti-Grief & Safe</h3>
+                    <p id="feat3-p">Schütze deine Bauwerke ganz einfach mit modernsten Claim-Systemen und automatischer Sicherung.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 3: ABOUT -->
+        <div id="about" class="page">
+            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-color);" id="txt-about-title">ÜBER FORCESMP LX</h2>
+            <p style="max-width: 700px; text-align: center; color: var(--text-sub); line-height: 1.8; font-size: 1.1rem; margin-bottom: 30px;" id="txt-about-p">
+                ForceSMP LX ist ein leidenschaftliches Minecraft-Projekt. Wir kombinieren das klassische Survival-Feeling mit innovativen Cyber-Elementen, um ein einzigartiges Gameplay zu erschaffen. Unser Entwicklerteam arbeitet kontinuierlich an neuen Inhalten und Events.
+            </p>
+        </div>
+
+        <!-- PAGE 4: COMMUNITY -->
+        <div id="community" class="page">
+            <h2 style="font-size: 2.5rem; margin-bottom: 15px; color: var(--accent-color);" id="txt-com-title">WERDE TEIL DER COMMUNITY</h2>
+            <p style="color: var(--text-sub); margin-bottom: 30px;" id="txt-com-p">Tritt unserem Discord-Server bei, um keine Updates, Teaser und Giveaways zu verpassen!</p>
+            <div class="social-links">
+                <a href="#" class="social-btn"><i class="fa-brands fa-discord" style="color: #5865F2;"></i> Discord</a>
+                <a href="#" class="social-btn"><i class="fa-solid fa-cart-shopping" style="color: var(--accent-color);"></i> Webshop</a>
+            </div>
+        </div>
+    </main>
 
     <script>
-        // Kleine Sprachsteuerung (DE/EN)
-        function setLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+        // Unterseiten Umschalter ohne Scrollen
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
 
-            const statusText = document.getElementById('status-text');
-            if (lang === 'de') {
-                statusText.innerText = "SERVER IS IN BUILDING";
-            } else {
-                statusText.innerText = "SERVER IS IN BUILDING";
+            const targetPage = document.getElementById(pageId);
+            if(targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            const activeLink = document.querySelector(`nav a[href="#${pageId}"]`);
+            if(activeLink) {
+                activeLink.classList.add('active');
             }
         }
 
-        // IP in die Zwischenablage kopieren beim Anklicken
+        // Kopieren des Texts "COMMING SOON"
         function copyIP() {
-            const copyText = document.getElementById("server-ip");
-            copyText.select();
-            copyText.setSelectionRange(0, 99999);
-            navigator.clipboard.writeText(copyText.value);
-            
-            // Optionales kurzes Feedback
-            const originalVal = copyText.value;
-            copyText.value = "COPIED!";
-            setTimeout(() => {
-                copyText.value = originalVal;
-            }, 1200);
+            const val = document.getElementById('ip-val').innerText;
+            navigator.clipboard.writeText(val).then(() => {
+                const btnText = document.getElementById('txt-copy');
+                const origText = btnText.innerText;
+                btnText.innerText = "COPIED!";
+                
+                setTimeout(() => {
+                    btnText.innerText = origText;
+                }, 1500);
+            });
         }
-    </script>
 
+        // Sprachumschaltung (DE / EN)
+        const i18n = {
+            de: {
+                status: "SERVER IS COMMING SOON!",
+                subtitle: "Das ultimative Cyber-Survival Erlebnis mit einzigartigen Systemen, Custom Skripten und maximaler Performance.",
+                copy: "KOPIEREN",
+                navAbout: "Über Uns",
+                featTitle: "SERVER FEATURES",
+                feat1H: "Custom Skripte", feat1P: "Eigene Quests, Wirtschaftssysteme und Interaktionen, die speziell für ForceSMP LX entwickelt wurden.",
+                feat2H: "High Performance", feat2P: "Optimierter Dedicated Server für ein absolut lag-freies Spielerlebnis auch bei vielen Spielern.",
+                feat3H: "Anti-Grief & Safe", feat3P: "Schütze deine Bauwerke ganz einfach mit modernsten Claim-Systemen und automatischer Sicherung.",
+                aboutTitle: "ÜBER FORCESMP LX",
+                aboutP: "ForceSMP LX ist ein leidenschaftliches Minecraft-Projekt. Wir kombinieren das klassische Survival-Feeling mit innovativen Cyber-Elementen, um ein einzigartiges Gameplay zu erschaffen. Unser Entwicklerteam arbeitet kontinuierlich an neuen Inhalten und Events.",
+                comTitle: "WERDE TEIL DER COMMUNITY",
+                comP: "Tritt unserem Discord-Server bei, um keine Updates, Teaser und Giveaways zu verpassen!"
+            },
+            en: {
+                status: "SERVER IS COMMING SOON!",
+                subtitle: "The ultimate cyber-survival experience with unique systems, custom scripts, and maximum performance.",
+                copy: "COPY",
+                navAbout: "About Us",
+                featTitle: "SERVER FEATURES",
+                feat1H: "Custom Scripts", feat1P: "Unique quests, economy systems, and custom features made specifically for ForceSMP LX.",
+                feat2H: "High Performance", feat2P: "Optimized dedicated server hardware for a smooth, lag-free gameplay experience.",
+                feat3H: "Anti-Grief & Safe", feat3P: "Easily protect your builds using our advanced claim and security systems.",
+                aboutTitle: "ABOUT FORCESMP LX",
+                aboutP: "ForceSMP LX is a passionate Minecraft project combining classic survival gameplay with innovative cyber features. Our team is constantly working on new content and events.",
+                comTitle: "JOIN THE COMMUNITY",
+                comP: "Join our Discord server to get the latest updates, teasers, and giveaways!"
+            }
+        };
+
+        function setLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const data = i18n[lang];
+            document.getElementById('txt-status').innerText = data.status;
+            document.getElementById('txt-subtitle').innerText = data.subtitle;
+            document.getElementById('txt-copy').innerText = data.copy;
+            document.getElementById('txt-feat-title').innerText = data.featTitle;
+            document.getElementById('feat1-h').innerText = data.feat1H;
+            document.getElementById('feat1-p').innerText = data.feat1P;
+            document.getElementById('feat2-h').innerText = data.feat2H;
+            document.getElementById('feat2-p').innerText = data.feat2P;
+            document.getElementById('feat3-h').innerText = data.feat3H;
+            document.getElementById('feat3-p').innerText = data.feat3P;
+            document.getElementById('txt-about-title').innerText = data.aboutTitle;
+            document.getElementById('txt-about-p').innerText = data.aboutP;
+            document.getElementById('txt-com-title').innerText = data.comTitle;
+            document.getElementById('txt-com-p').innerText = data.comP;
+            document.querySelector('nav a[href="#about"]').innerText = data.navAbout;
+        }
+
+        // Beim ersten Laden Hash abfangen
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.replace('#', '') || 'home';
+            showPage(hash);
+        });
+    </script>
 </body>
 </html>
