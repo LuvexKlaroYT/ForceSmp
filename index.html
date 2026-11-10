@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForceSMP LX | Cyber Minecraft Experience</title>
+    <title>ForceSMP | Cyber Minecraft Experience</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --bg-color: #06090e;
-            --card-bg: rgba(13, 22, 35, 0.75);
+            --card-bg: rgba(13, 22, 35, 0.85);
             --accent-color: #55ffff;
             --accent-glow: rgba(85, 255, 255, 0.35);
             --text-main: #ffffff;
@@ -28,7 +28,7 @@
             color: var(--text-main);
             height: 100vh;
             width: 100vw;
-            overflow: hidden; /* Verhindert Scrollen */
+            overflow: hidden;
             display: flex;
             flex-direction: column;
             background-image: 
@@ -41,8 +41,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
-            background: rgba(6, 9, 14, 0.8);
+            padding: 15px 40px;
+            background: rgba(6, 9, 14, 0.9);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             z-index: 100;
@@ -55,17 +55,17 @@
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
+            font-size: 1.6rem;
+            font-weight: 900;
             color: var(--accent-color);
             text-shadow: 0 0 12px var(--accent-glow);
             letter-spacing: 2px;
         }
 
-        /* Sprachumschalter Oben Links */
+        /* Sprachumschalter */
         .lang-switch {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             background: rgba(255, 255, 255, 0.05);
             padding: 4px;
             border-radius: 6px;
@@ -94,14 +94,14 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 15px;
         }
 
         nav a {
             color: var(--text-sub);
             text-decoration: none;
             font-weight: 600;
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: 0.3s;
@@ -112,7 +112,7 @@
         nav a:hover, nav a.active {
             color: var(--accent-color);
             text-shadow: 0 0 8px var(--accent-glow);
-            background: rgba(85, 255, 255, 0.05);
+            background: rgba(85, 255, 255, 0.08);
         }
 
         /* Sub-Pages Container */
@@ -120,7 +120,7 @@
             flex: 1;
             position: relative;
             width: 100%;
-            height: calc(100vh - 80px);
+            height: calc(100vh - 75px);
         }
 
         .page {
@@ -133,9 +133,9 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 40px;
+            padding: 30px;
             opacity: 0;
-            transition: opacity 0.4s ease-in-out;
+            transition: opacity 0.3s ease-in-out;
         }
 
         .page.active {
@@ -143,7 +143,7 @@
             opacity: 1;
         }
 
-        /* Home Page Content */
+        /* Home Content */
         .status-badge {
             display: inline-flex;
             align-items: center;
@@ -186,10 +186,10 @@
 
         p.hero-subtitle {
             color: var(--text-sub);
-            font-size: 1.2rem;
-            max-width: 600px;
+            font-size: 1.15rem;
+            max-width: 650px;
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 35px;
             line-height: 1.6;
         }
 
@@ -237,7 +237,7 @@
             pointer-events: none;
         }
 
-        /* Grid Pages (Features / About) */
+        /* Grid Layouts */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -249,7 +249,7 @@
         .card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            padding: 30px;
+            padding: 26px;
             border-radius: 12px;
             text-align: left;
             transition: 0.3s;
@@ -262,27 +262,71 @@
         }
 
         .card i {
-            font-size: 2rem;
+            font-size: 1.8rem;
             color: var(--accent-color);
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
         }
 
         .card p {
             color: var(--text-sub);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             line-height: 1.5;
+        }
+
+        /* Capes Showcase Styling */
+        .cape-showcase {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--card-bg);
+            border: 1px solid var(--accent-color);
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 0 35px var(--accent-glow);
+            max-width: 750px;
+        }
+
+        .cape-img {
+            max-width: 100%;
+            height: auto;
+            max-height: 380px;
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        /* Leaderboard Table */
+        .rank-table {
+            width: 100%;
+            max-width: 800px;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .rank-table th, .rank-table td {
+            padding: 12px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .rank-table th {
+            background: rgba(85, 255, 255, 0.1);
+            color: var(--accent-color);
         }
 
         /* Social Buttons */
         .social-links {
             display: flex;
             gap: 16px;
-            margin-top: 30px;
+            margin-top: 20px;
         }
 
         .social-btn {
@@ -310,18 +354,20 @@
 
     <header>
         <div class="header-left">
-            <div class="logo">FORCE SMP <span style="color: #fff;">LX</span></div>
+            <div class="logo">FORCE SMP</div>
             <div class="lang-switch">
-                <button class="lang-btn active" onclick="setLang('de')">DE</button>
-                <button class="lang-btn" onclick="setLang('en')">EN</button>
+                <button class="lang-btn active" onclick="setLang('de', this)">DE</button>
+                <button class="lang-btn" onclick="setLang('en', this)">EN</button>
             </div>
         </div>
         <nav>
             <ul>
-                <li><a href="#home" class="nav-link active" onclick="showPage('home')">Home</a></li>
-                <li><a href="#features" class="nav-link" onclick="showPage('features')">Features</a></li>
-                <li><a href="#about" class="nav-link" onclick="showPage('about')">Über Uns</a></li>
-                <li><a href="#community" class="nav-link" onclick="showPage('community')">Community</a></li>
+                <li><a href="#home" id="nav-home" class="nav-link active" onclick="showPage('home')">Home</a></li>
+                <li><a href="#features" id="nav-features" class="nav-link" onclick="showPage('features')">Features</a></li>
+                <li><a href="#capes" id="nav-capes" class="nav-link" onclick="showPage('capes')">Capes</a></li>
+                <li><a href="#rules" id="nav-rules" class="nav-link" onclick="showPage('rules')">Regeln</a></li>
+                <li><a href="#about" id="nav-about" class="nav-link" onclick="showPage('about')">Über Uns</a></li>
+                <li><a href="#community" id="nav-community" class="nav-link" onclick="showPage('community')">Community</a></li>
             </ul>
         </nav>
     </header>
@@ -333,7 +379,7 @@
                 <span class="pulse-dot"></span>
                 <span id="txt-status">SERVER IS COMMING SOON!</span>
             </div>
-            <h1 class="hero-title">FORCE SMP LX</h1>
+            <h1 class="hero-title">FORCE SMP</h1>
             <p class="hero-subtitle" id="txt-subtitle">Das ultimative Cyber-Survival Erlebnis mit einzigartigen Systemen, Custom Skripten und maximaler Performance.</p>
             
             <div class="ip-card" onclick="copyIP()">
@@ -347,12 +393,12 @@
 
         <!-- PAGE 2: FEATURES -->
         <div id="features" class="page">
-            <h2 style="font-size: 2.5rem; margin-bottom: 30px; color: var(--accent-color);" id="txt-feat-title">SERVER FEATURES</h2>
+            <h2 style="font-size: 2.2rem; margin-bottom: 25px; color: var(--accent-color);" id="txt-feat-title">SERVER FEATURES</h2>
             <div class="grid-container">
                 <div class="card">
                     <i class="fa-solid fa-code"></i>
                     <h3 id="feat1-h">Custom Skripte</h3>
-                    <p id="feat1-p">Eigene Quests, Wirtschaftssysteme und Interaktionen, die speziell für ForceSMP LX entwickelt wurden.</p>
+                    <p id="feat1-p">Eigene Quests, Wirtschaftssysteme und Interaktionen, die speziell für ForceSMP entwickelt wurden.</p>
                 </div>
                 <div class="card">
                     <i class="fa-solid fa-bolt"></i>
@@ -367,17 +413,54 @@
             </div>
         </div>
 
-        <!-- PAGE 3: ABOUT -->
+        <!-- PAGE 3: CAPES & COSMETICS -->
+        <div id="capes" class="page">
+            <h2 style="font-size: 2.2rem; margin-bottom: 15px; color: var(--accent-color);" id="txt-cape-title">OFFIZIELLES FORCESMP CAPE</h2>
+            <div class="cape-showcase">
+                <!-- Foto des Capes eingebunden -->
+                <img src="Gemini_Generated_Image_b0wwg5b0wwg5b0ww.jpg" alt="ForceSMP Cape Preview" class="cape-img">
+                <p style="color: var(--text-sub); text-align: center; font-size: 0.95rem;" id="txt-cape-desc">Exklusives Cyber-Cape für Supporter & Teammitglieder von ForceSMP!</p>
+            </div>
+        </div>
+
+        <!-- PAGE 4: RULES -->
+        <div id="rules" class="page">
+            <h2 style="font-size: 2.2rem; margin-bottom: 25px; color: var(--accent-color);" id="txt-rules-title">SERVER REGELN</h2>
+            <div class="grid-container" style="grid-template-columns: repeat(2, 1fr); max-width: 900px;">
+                <div class="card">
+                    <i class="fa-solid fa-ban"></i>
+                    <h3 id="r1-h">1. Kein Cheaten / Hacking</h3>
+                    <p id="r1-p">Modifikationen, die unfaire Vorteile verschaffen (X-Ray, Autoclicker, Killaura), führen zum sofortigen Ban.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-comments"></i>
+                    <h3 id="r2-h">2. Respektvoller Chat</h3>
+                    <p id="r2-p">Beleidigungen, Spam und Eigenwerbung sind im Chat strengstens untersagt.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-house-lock"></i>
+                    <h3 id="r3-h">3. Kein Griefing</h3>
+                    <p id="r3-p">Fremde Grundstücke und Bauwerke dürfen nicht beschädigt oder ausgeraubt werden.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-bug"></i>
+                    <h3 id="r4-h">4. Bug-Using</h3>
+                    <p id="r4-p">Das Ausnutzen von Fehlern oder Duplizieren von Items muss sofort dem Team gemeldet werden.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 5: ABOUT -->
         <div id="about" class="page">
-            <h2 style="font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-color);" id="txt-about-title">ÜBER FORCESMP LX</h2>
+            <h2 style="font-size: 2.2rem; margin-bottom: 20px; color: var(--accent-color);" id="txt-about-title">ÜBER FORCESMP</h2>
             <p style="max-width: 700px; text-align: center; color: var(--text-sub); line-height: 1.8; font-size: 1.1rem; margin-bottom: 30px;" id="txt-about-p">
-                ForceSMP LX ist ein leidenschaftliches Minecraft-Projekt. Wir kombinieren das klassische Survival-Feeling mit innovativen Cyber-Elementen, um ein einzigartiges Gameplay zu erschaffen. Unser Entwicklerteam arbeitet kontinuierlich an neuen Inhalten und Events.
+                ForceSMP ist ein leidenschaftliches Minecraft-Projekt. Wir kombinieren das klassische Survival-Feeling mit innovativen Cyber-Elementen, um ein einzigartiges Gameplay zu erschaffen. Unser Entwicklerteam arbeitet kontinuierlich an neuen Inhalten und Events.
             </p>
         </div>
 
-        <!-- PAGE 4: COMMUNITY -->
+        <!-- PAGE 6: COMMUNITY -->
         <div id="community" class="page">
-            <h2 style="font-size: 2.5rem; margin-bottom: 15px; color: var(--accent-color);" id="txt-com-title">WERDE TEIL DER COMMUNITY</h2>
+            <h2 style="font-size: 2.2rem; margin-bottom: 15px; color: var(--accent-color);" id="txt-com-title">WERDE TEIL DER COMMUNITY</h2>
             <p style="color: var(--text-sub); margin-bottom: 30px;" id="txt-com-p">Tritt unserem Discord-Server bei, um keine Updates, Teaser und Giveaways zu verpassen!</p>
             <div class="social-links">
                 <a href="#" class="social-btn"><i class="fa-brands fa-discord" style="color: #5865F2;"></i> Discord</a>
@@ -421,43 +504,65 @@
             });
         }
 
-        // Sprachumschaltung (DE / EN)
+        // Vollständige Sprachumschaltung (DE / EN) inklusive Navigation!
         const i18n = {
             de: {
+                navHome: "Home", navFeatures: "Features", navCapes: "Capes", navRules: "Regeln", navAbout: "Über Uns", navCommunity: "Community",
                 status: "SERVER IS COMMING SOON!",
                 subtitle: "Das ultimative Cyber-Survival Erlebnis mit einzigartigen Systemen, Custom Skripten und maximaler Performance.",
                 copy: "KOPIEREN",
-                navAbout: "Über Uns",
                 featTitle: "SERVER FEATURES",
-                feat1H: "Custom Skripte", feat1P: "Eigene Quests, Wirtschaftssysteme und Interaktionen, die speziell für ForceSMP LX entwickelt wurden.",
+                feat1H: "Custom Skripte", feat1P: "Eigene Quests, Wirtschaftssysteme und Interaktionen, die speziell für ForceSMP entwickelt wurden.",
                 feat2H: "High Performance", feat2P: "Optimierter Dedicated Server für ein absolut lag-freies Spielerlebnis auch bei vielen Spielern.",
                 feat3H: "Anti-Grief & Safe", feat3P: "Schütze deine Bauwerke ganz einfach mit modernsten Claim-Systemen und automatischer Sicherung.",
-                aboutTitle: "ÜBER FORCESMP LX",
-                aboutP: "ForceSMP LX ist ein leidenschaftliches Minecraft-Projekt. Wir kombinieren das klassische Survival-Feeling mit innovativen Cyber-Elementen, um ein einzigartiges Gameplay zu erschaffen. Unser Entwicklerteam arbeitet kontinuierlich an neuen Inhalten und Events.",
+                capeTitle: "OFFIZIELLES FORCESMP CAPE", capeDesc: "Exklusives Cyber-Cape für Supporter & Teammitglieder von ForceSMP!",
+                rulesTitle: "SERVER REGELN",
+                r1H: "1. Kein Cheaten / Hacking", r1P: "Modifikationen, die unfaire Vorteile verschaffen (X-Ray, Autoclicker, Killaura), führen zum sofortigen Ban.",
+                r2H: "2. Respektvoller Chat", r2P: "Beleidigungen, Spam und Eigenwerbung sind im Chat strengstens untersagt.",
+                r3H: "3. Kein Griefing", r3P: "Fremde Grundstücke und Bauwerke dürfen nicht beschädigt oder ausgeraubt werden.",
+                r4H: "4. Bug-Using", r4P: "Das Ausnutzen von Fehlern oder Duplizieren von Items muss sofort dem Team gemeldet werden.",
+                aboutTitle: "ÜBER FORCESMP",
+                aboutP: "ForceSMP ist ein leidenschaftliches Minecraft-Projekt. Wir kombinieren das klassische Survival-Feeling mit innovativen Cyber-Elementen, um ein einzigartiges Gameplay zu erschaffen. Unser Entwicklerteam arbeitet kontinuierlich an neuen Inhalten und Events.",
                 comTitle: "WERDE TEIL DER COMMUNITY",
                 comP: "Tritt unserem Discord-Server bei, um keine Updates, Teaser und Giveaways zu verpassen!"
             },
             en: {
+                navHome: "Home", navFeatures: "Features", navCapes: "Capes", navRules: "Rules", navAbout: "About Us", navCommunity: "Community",
                 status: "SERVER IS COMMING SOON!",
                 subtitle: "The ultimate cyber-survival experience with unique systems, custom scripts, and maximum performance.",
                 copy: "COPY",
-                navAbout: "About Us",
                 featTitle: "SERVER FEATURES",
-                feat1H: "Custom Scripts", feat1P: "Unique quests, economy systems, and custom features made specifically for ForceSMP LX.",
+                feat1H: "Custom Scripts", feat1P: "Unique quests, economy systems, and custom features made specifically for ForceSMP.",
                 feat2H: "High Performance", feat2P: "Optimized dedicated server hardware for a smooth, lag-free gameplay experience.",
                 feat3H: "Anti-Grief & Safe", feat3P: "Easily protect your builds using our advanced claim and security systems.",
-                aboutTitle: "ABOUT FORCESMP LX",
-                aboutP: "ForceSMP LX is a passionate Minecraft project combining classic survival gameplay with innovative cyber features. Our team is constantly working on new content and events.",
+                capeTitle: "OFFICIAL FORCESMP CAPE", capeDesc: "Exclusive cyber cape for supporters & team members of ForceSMP!",
+                rulesTitle: "SERVER RULES",
+                r1H: "1. No Cheating / Hacking", r1P: "Any modifications providing unfair advantages (X-Ray, Autoclickers, Killaura) will result in a permanent ban.",
+                r2H: "2. Respectful Chat", r2P: "Insults, spam, and self-promotion are strictly prohibited in public chat.",
+                r3H: "3. No Griefing", r3P: "Griefing or stealing from other players' claims is strictly forbidden.",
+                r4H: "4. Bug Exploiting", r4P: "Exploiting bugs or duplicating items must be reported to the staff team immediately.",
+                aboutTitle: "ABOUT FORCESMP",
+                aboutP: "ForceSMP is a passionate Minecraft project combining classic survival gameplay with innovative cyber features. Our team is constantly working on new content and events.",
                 comTitle: "JOIN THE COMMUNITY",
                 comP: "Join our Discord server to get the latest updates, teasers, and giveaways!"
             }
         };
 
-        function setLang(lang) {
+        function setLang(lang, btnElement) {
             document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-            event.target.classList.add('active');
+            if(btnElement) btnElement.classList.add('active');
 
             const data = i18n[lang];
+
+            // Navigation übersetzen
+            document.getElementById('nav-home').innerText = data.navHome;
+            document.getElementById('nav-features').innerText = data.navFeatures;
+            document.getElementById('nav-capes').innerText = data.navCapes;
+            document.getElementById('nav-rules').innerText = data.navRules;
+            document.getElementById('nav-about').innerText = data.navAbout;
+            document.getElementById('nav-community').innerText = data.navCommunity;
+
+            // Seiteninhalte übersetzen
             document.getElementById('txt-status').innerText = data.status;
             document.getElementById('txt-subtitle').innerText = data.subtitle;
             document.getElementById('txt-copy').innerText = data.copy;
@@ -468,11 +573,20 @@
             document.getElementById('feat2-p').innerText = data.feat2P;
             document.getElementById('feat3-h').innerText = data.feat3H;
             document.getElementById('feat3-p').innerText = data.feat3P;
+
+            document.getElementById('txt-cape-title').innerText = data.capeTitle;
+            document.getElementById('txt-cape-desc').innerText = data.capeDesc;
+
+            document.getElementById('txt-rules-title').innerText = data.rulesTitle;
+            document.getElementById('r1-h').innerText = data.r1H; document.getElementById('r1-p').innerText = data.r1P;
+            document.getElementById('r2-h').innerText = data.r2H; document.getElementById('r2-p').innerText = data.r2P;
+            document.getElementById('r3-h').innerText = data.r3H; document.getElementById('r3-p').innerText = data.r3P;
+            document.getElementById('r4-h').innerText = data.r4H; document.getElementById('r4-p').innerText = data.r4P;
+
             document.getElementById('txt-about-title').innerText = data.aboutTitle;
             document.getElementById('txt-about-p').innerText = data.aboutP;
             document.getElementById('txt-com-title').innerText = data.comTitle;
             document.getElementById('txt-com-p').innerText = data.comP;
-            document.querySelector('nav a[href="#about"]').innerText = data.navAbout;
         }
 
         // Beim ersten Laden Hash abfangen
